@@ -1,0 +1,22 @@
+# On Router 1:
+
+>enable
+configure terminal
+int f0/0
+ip add 10.0.0.2 255.0.0.0
+no shutdown
+exit
+int f0/1
+ip add 20.0.0.2 255.0.0.0
+no shutdown
+exit
+-----------------
+int f0/0
+standby 1 ip 10.0.0.4
+standby preempt
+exit
+int f0/1
+standby 2 ip 20.0.0.4
+standby priority 120
+standby preempt 
+exit
